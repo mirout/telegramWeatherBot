@@ -1,6 +1,7 @@
-package in.ruzavin.telegramweatherbot.owpapi;
+package in.ruzav.telegramweatherbot.owpapi;
 
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -22,9 +23,11 @@ public class OwpApi {
                 .setHost("api.openweathermap.org")
                 .setPath("/data/2.5/weather")
                 .addParameter("q", String.format("%s,%s", city, country))
-                .addParameter("appid", apiKey);
+                .addParameter("appid", apiKey)
+                .addParameter("units", "metric");
         var request = HttpRequest.newBuilder(uri.build()).build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return new Weather(response.body());
+
+        return new Weather(new JSONObject(response.body()));
     }
 }

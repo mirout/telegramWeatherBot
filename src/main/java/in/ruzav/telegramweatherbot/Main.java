@@ -1,6 +1,6 @@
-package in.ruzavin.telegramweatherbot;
+package in.ruzav.telegramweatherbot;
 
-import in.ruzavin.telegramweatherbot.owpapi.OwpApi;
+import in.ruzav.telegramweatherbot.owpapi.OwpApi;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;

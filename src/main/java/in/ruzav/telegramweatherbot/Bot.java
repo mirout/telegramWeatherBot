@@ -1,6 +1,6 @@
-package in.ruzavin.telegramweatherbot;
+package in.ruzav.telegramweatherbot;
 
-import in.ruzavin.telegramweatherbot.owpapi.OwpApi;
+import in.ruzav.telegramweatherbot.owpapi.OwpApi;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
