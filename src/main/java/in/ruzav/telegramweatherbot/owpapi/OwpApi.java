@@ -1,5 +1,6 @@
 package in.ruzav.telegramweatherbot.owpapi;
 
+import in.ruzav.telegramweatherbot.owpapi.exception.NotFoundException;
 import org.apache.http.client.utils.URIBuilder;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ public class OwpApi {
         apiKey = owpToken;
     }
 
-    public Weather getWeather(String city, String country) throws IOException, InterruptedException, URISyntaxException {
+    public Weather getWeather(String city, String country) throws IOException, InterruptedException, URISyntaxException, NotFoundException {
         var uri = new URIBuilder()
                 .setScheme("https")
                 .setHost("api.openweathermap.org")
@@ -27,6 +28,10 @@ public class OwpApi {
                 .addParameter("units", "metric");
         var request = HttpRequest.newBuilder(uri.build()).build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 404) {
+            throw new NotFoundException(city, country);
+        }
 
         return new Weather(new JSONObject(response.body()));
     }

@@ -1,5 +1,6 @@
 package in.ruzav.telegramweatherbot;
 
+import in.ruzav.telegramweatherbot.owpapi.exception.NotFoundException;
 import in.ruzav.telegramweatherbot.owpapi.OwpApi;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -39,6 +40,8 @@ public class Bot extends TelegramLongPollingBot {
             sendMessage(msg.getChatId(), owpApi.getWeather(info[0], info[1]).toString());
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
+        } catch (NotFoundException e) {
+            sendMessage(msg.getChatId(), e.getMessage());
         }
     }
 
