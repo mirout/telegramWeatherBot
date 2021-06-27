@@ -36,6 +36,7 @@ public class OwpApi {
         if (response.statusCode() == 404) {
             throw new NotFoundException(place.getCity(), place.getCountry());
         }
+
         return new Weather(new JSONObject(response.body()), place);
     }
 }
