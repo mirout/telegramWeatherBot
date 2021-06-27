@@ -10,11 +10,16 @@ public class Place {
     }
 
     public Place(String str) {
+
         String[] split = str.split(" ");
         StringBuilder cityStringBuilder = new StringBuilder();
+
         for (int i = 0; i < split.length - 1; i++) {
             cityStringBuilder.append(split[i]).append(" ");
         }
+
+        cityStringBuilder.setLength(cityStringBuilder.length() - 1);
+
         this.city = cityStringBuilder.toString();
         this.country = split[split.length - 1];
     }
