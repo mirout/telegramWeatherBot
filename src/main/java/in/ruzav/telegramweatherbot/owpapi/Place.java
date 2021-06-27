@@ -11,17 +11,14 @@ public class Place {
 
     public Place(String str) {
 
-        String[] split = str.split(" ");
-        StringBuilder cityStringBuilder = new StringBuilder();
+        String[] split = str.split(",");
 
-        for (int i = 0; i < split.length - 1; i++) {
-            cityStringBuilder.append(split[i]).append(" ");
+        if (split.length != 2) {
+            throw new IllegalArgumentException();
         }
 
-        cityStringBuilder.setLength(cityStringBuilder.length() - 1);
-
-        this.city = cityStringBuilder.toString();
-        this.country = split[split.length - 1];
+        this.city = split[0];
+        this.country = split[1];
     }
 
     public String getCity() {
