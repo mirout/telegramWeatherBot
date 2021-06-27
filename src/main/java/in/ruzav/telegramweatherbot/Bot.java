@@ -47,7 +47,7 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
         try {
-            sendMessage(msg.getChatId(), owpApi.getWeather(info[0], info[1]).toString());
+            sendMessage(msg.getChatId(), owpApi.getWeather(new Place(msg.getText())).toString());
         } catch (IOException | InterruptedException | URISyntaxException e) {
             e.printStackTrace();
         } catch (NotFoundException e) {
@@ -77,7 +77,7 @@ public class Bot extends TelegramLongPollingBot {
                 return;
             }
 
-            Place place = new Place(text.substring(4));
+            Place place = new Place(text.substring(5));
             try {
                 Weather weather = owpApi.getWeather(place);
                 sendMessage(msg.getChatId(), weather.toString());
